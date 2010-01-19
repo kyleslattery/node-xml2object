@@ -24,12 +24,23 @@ It would be transformed to this:
           
           video: [
             {
-              title: "Video 1"
+              title: {
+                content: "Video 1"
+              }
             },
             {
-              title: "Video 2"
+              title: {
+                content: "Video 2"
+              }
             }
           ]
         }
       }
     }
+    
+TODO
+=====
+1. Get working with arrays of objects
+2. Write more in-depth tests
+3. Have it support attributes
+4. Switch nodes to be object with toString() set to content, instead of using a content string
