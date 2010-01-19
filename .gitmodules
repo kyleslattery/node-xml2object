@@ -1,3 +1,6 @@
 [submodule "vendor/ntest"]
 	path = vendor/ntest
 	url = git://github.com/technoweenie/ntest.git
+[submodule "vendor/node-xml"]
+	path = vendor/node-xml
+	url = git://github.com/robrighter/node-xml.git
