@@ -28,3 +28,32 @@ describe("Basic XML String parse with parseString")
 			}
 		})
 	})
+	
+describe("XML String with array")
+	before(function() {
+		this.xml = "<root><items><item>test1</item><item>test2</item><item>test3</item></items></root>";
+		this.response = xml2object.parseString(this.xml);
+	})
+	
+	it("should return object with array of items", function() {
+		var response = this.response.wait();
+
+		assert.deepEqual(response, {
+			root: {
+				items: {
+					item: [
+						{
+							content: "test1"
+						},
+						{
+							content: "test2"
+						},
+						{
+							content: "test3"
+						}
+					]
+				}
+			}
+		})
+	})
+	
