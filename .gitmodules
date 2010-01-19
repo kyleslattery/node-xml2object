@@ -1,0 +1,3 @@
+[submodule "vendor/ntest"]
+	path = vendor/ntest
+	url = git://github.com/technoweenie/ntest.git
