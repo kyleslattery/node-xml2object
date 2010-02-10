@@ -18,15 +18,9 @@ describe("Basic XML String parse with parseString")
 		}, "TypeError");
 	})
 	
-	it("should return proper object for the XML", function() {
+	it("should have correct values", function() {
 		var response = this.response.wait();
-		assert.deepEqual(response, {
-			root: {
-				item: {
-					content: "text"
-				}
-			}
-		})
+		assert.equal(response.root.item.content, "text")
 	})
 	
 describe("XML String with array")
@@ -37,23 +31,22 @@ describe("XML String with array")
 	
 	it("should return object with array of items", function() {
 		var response = this.response.wait();
-
-		assert.deepEqual(response, {
-			root: {
-				items: {
-					item: [
-						{
-							content: "test1"
-						},
-						{
-							content: "test2"
-						},
-						{
-							content: "test3"
-						}
-					]
-				}
-			}
-		})
+		assert.equal(response.root.items.item[0], "test1")
+		assert.equal(response.root.items.item[1], "test2")
+		assert.equal(response.root.items.item[2], "test3")
 	})
 	
+describe("Complicated XML String")
+	before(function() {
+		this.xml = "<root><items><item><name>test1</name><value>value1</value></item><item><name>test2</name><value>value2</value></item></items></root>";
+		this.response = xml2object.parseString(this.xml);
+	})
+	
+	it("should return proper array", function() {
+		var response = this.response.wait();
+		
+		assert.equal(response.root.items.item[0].name, 'test1')
+		assert.equal(response.root.items.item[0].value, 'value1')
+		assert.equal(response.root.items.item[1].name, 'test2')
+		assert.equal(response.root.items.item[1].value, 'value2')
+	})
