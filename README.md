@@ -38,6 +38,11 @@ Just do the following:
       sys.puts(obj.root.videos.video[0].attrs().length); // outputs "20"
     });
     
+To do
+=====
+1. Figure out better way to deal with module dependencies (node-xml and ntest)
+2. Add support for prefixes in XML tags
+    
 License
 =======
 
