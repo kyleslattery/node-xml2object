@@ -50,3 +50,47 @@ describe("Complicated XML String")
 		assert.equal(response.root.items.item[1].name, 'test2')
 		assert.equal(response.root.items.item[1].value, 'value2')
 	})
+	
+describe("XML with attributes")
+	before(function() {
+		this.xml = "<root><items><item id='1' type='widget'><name>test1</name></item><item id='2' type='vidget'><name>test2</name></item><item><name>test3</name></item></items></root>";
+		this.response = xml2object.parseString(this.xml);
+	})
+	
+	it("should return correct values from attr()", function(){
+		var response = this.response.wait();
+
+		assert.equal(response.root.items.item[0].attr('id'), '1');
+		assert.equal(response.root.items.item[0].attr('type'), 'widget');
+		assert.equal(response.root.items.item[1].attr('id'), '2');
+		assert.equal(response.root.items.item[1].attr('type'), 'vidget')
+	})
+	
+	it("should still have correct elems", function() {
+		var response = this.response.wait();
+		
+		assert.equal(response.root.items.item[0].name, 'test1');
+		assert.equal(response.root.items.item[1].name, 'test2');
+	})
+	
+	it("should return proper object for attrs() for elems with attrs", function() {
+		var response = this.response.wait();
+		
+		assert.equal(response.root.items.item[0].attrs().id, '1');
+		assert.equal(response.root.items.item[0].attrs().type, 'widget');
+		assert.equal(response.root.items.item[1].attrs().id, '2');
+		assert.equal(response.root.items.item[1].attrs().type, 'vidget');
+	})
+	
+	it("should return empty object for attrs() if no attributes", function() {
+		var response = this.response.wait();
+
+		assert.deepEqual(response.root.items.item[2].attrs(), {});
+	});
+	
+	it("should return null if attr not defined", function() {
+		var response = this.response.wait();
+		
+		assert.equal(response.root.items.item[1].attr("asdf"), null);
+	})
+	
