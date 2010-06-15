@@ -2,6 +2,11 @@ Description
 ======
 This is a node.js module to transform XML into a JS object.  It currently relies on the [node-xml](http://github.com/robrighter/node-xml) and [ntest](http://github.com/technoweenie/ntest) libraries, both of which are installed as git submodules in `vendor/`.  I'm going to have to find a better way to deal with them.
 
+Contributors
+============
+- [Kyle Slattery](http://github.com/kyleslattery)
+- [Fabian Jakobs](http://github.com/fjakobs)
+
 Usage
 =====
 Say you have the following XML you'd like to transform, in a string:
